@@ -32,6 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
+  
   <form method="post" action="">
 
     <input value="<?php echo $teamid ?>" name="teamid" type="text" id="text" placeholder="teamid"><br><br>
