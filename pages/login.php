@@ -37,6 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <center><img class="logo" src="https://shorturl.at/vJV16" ; height="150" width="100"></center>
     <form method="post" action="">
 
+
       <input value="<?php echo $teamid ?>" name="teamid" type="text" id="text" placeholder="teamid" required><br><br>
       <input value="<?php echo $password ?>" name="password" type="text" id="text" placeholder="password"
         required><br><br>
