@@ -7,10 +7,10 @@ class Login
 
   function evaluate($data)
   {
-    $teamid = addslashes($data['teamid']);
+    $team_login = addslashes($data['team_login']);
     $password = addslashes($data['password']);
 
-    $query = "select * from users where teamid = '$teamid' limit 1";
+    $query = "select * from users where team_login = '$team_login' limit 1";
 
     $DB = new Database();
     $result = $DB->read($query);
@@ -27,6 +27,22 @@ class Login
       $this->error .= "Wrong teamid<br>";
     }
     return $this->error;
+  }
+
+  //todo: use this function to validate event add pages
+  //https://www.youtube.com/watch?v=VDsfP8ia_yQ&list=PLY3j36HMSHNWaKUC73RJlwi6oU-WTpTPM&index=41
+  function check_login($teamid)
+  {
+    $query = "select * from users where teamid = '$teamid' limit 1";
+
+    $DB = new Database();
+    $result = $DB->read($query);
+
+    if ($result) {
+      return true;
+    }
+
+    return false;
   }
 
 }
