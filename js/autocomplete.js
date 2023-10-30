@@ -2,7 +2,7 @@ let autocomplete = "";
 let lat, lng;
 
 function initMap() {
-  const input = document.getElementById("pac-input");
+  const input = document.getElementById("e_location");
   const options = {
     componentRestricitons: { country: "ro" },
     fields: ["geometry", "name", "place_id"],
