@@ -21,7 +21,6 @@ async function initMap() {
   const marker = new google.maps.Marker({
     position: { lat: 44.4268, lng: 26.1025 },
     map,
-    //title: "Hello World!",
   });
 
   marker.addListener("mouseover", () => {
