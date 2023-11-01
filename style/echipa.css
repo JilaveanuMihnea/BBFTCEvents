@@ -1,0 +1,112 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Montserrat", sans-serif;
+  background-color: rgb(245, 238, 225);
+}
+.container-top {
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
+}
+.container-top p,
+.container-top img {
+  margin: 20px;
+}
+
+.events {
+  margin: 0 10%;
+  display: flex;
+  flex-direction: column;
+  border-radius: 30px;
+}
+.container-left {
+  width: 100%;
+  display: flex;
+  border: solid black;
+}
+.container-right {
+  width: 100%;
+  display: flex;
+  border-top: solid black;
+  border-right: solid black;
+  border-bottom: solid black;
+}
+p {
+  text-align: justify;
+}
+.past-ev {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  font-weight: 600;
+}
+.upcoming-ev a,
+.past-ev a {
+  padding: 10px;
+}
+.container-butoane {
+  margin: 20px 0;
+  display: flex;
+  border-top: dashed rgba(166, 179, 178, 0.5);
+  border-bottom: dashed rgba(166, 179, 178, 0.5);
+}
+.left {
+  padding: 10px;
+  display: flex;
+  width: 50%;
+  border-right: dashed rgba(166, 179, 178, 0.5);
+}
+.left button,
+.right button {
+  margin: auto;
+  text-align: center;
+  border: 0;
+}
+.right {
+  width: 50%;
+  padding: 10px;
+  display: flex;
+  width: 50%;
+  align-items: center;
+}
+h1 {
+  margin: 30px;
+  padding: 10px;
+  width: max-content;
+  background-color: white;
+}
+.body p {
+  margin-left: 40px;
+  margin-bottom: 30px;
+  background-color: white;
+}
+.body {
+  display: flex;
+  flex-direction: row;
+  margin: 15px;
+  border-radius: 30px;
+  box-shadow: 4px 4px 4px 4px gray;
+  background-color: white;
+}
+
+.left-side {
+  border-radius: 30px;
+  background-color: white;
+}
+
+.right-side {
+  border-radius: 30px;
+  background-color: white;
+  display: flex;
+  flex-direction: row-reverse;
+  flex-grow: 1;
+  width: fit-content;
+}
+.right-side img {
+  aspect-ratio: 1;
+  margin: 5px 100px 5px 0;
+}
