@@ -23,25 +23,13 @@ class Event
     $event_location = addslashes($data["event_location"]);
     $event_time = addslashes($data["event_time"]);
     $event_img = addslashes($data["event_img"]);
-    $eventid = $this->create_eventid();
+    $eventid = addslashes($data["eventid"]);
     //$event_lat = $data["lat"];
     $query = "insert into events (eventid, teamid, event_name, event_desc, event_img, event_time, event_location) values ('$eventid', '$teamid', '$event_name', '$event_desc', '$event_img', '$event_time', '$event_location')";
     $DB = new Database();
     $DB->save($query);
 
 
-  }
-
-
-  private function create_eventid()
-  {
-    $length = rand(10, 19);
-    $num = "";
-    for ($i = 0; $i < $length; $i++) {
-      $new_rand = rand(0, 9);
-      $num .= $new_rand;
-    }
-    return $num;
   }
 }
 
