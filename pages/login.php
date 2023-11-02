@@ -1,8 +1,9 @@
 <?php
+session_start();
 include("../classes/connect.php");
 include("../classes/login.php");
 
-$teamid = "";
+$team_login = "";
 $password = "";
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -16,7 +17,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     die;
   }
 
-  $teamid = $_POST['teamid'];
+  $team_login = $_POST['team_login'];
   $password = $_POST['password'];
 }
 
@@ -30,6 +31,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" type="text/css" href="../style/login_style.css">
   <title>Login</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap" rel="stylesheet">
+
 </head>
 
 <body>
@@ -38,7 +44,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <form method="post" action="">
 
 
-      <input value="<?php echo $teamid ?>" name="teamid" type="text" id="text" placeholder="teamid" required><br><br>
+      <input value="<?php echo $team_login ?>" name="team_login" type="text" id="text" placeholder="username" required><br><br>
       <input value="<?php echo $password ?>" name="password" type="text" id="text" placeholder="password"
         required><br><br>
 

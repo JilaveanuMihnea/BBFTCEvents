@@ -1,6 +1,6 @@
 <?php
 
 session_start();
-unset($_SESSION['teamid']);
+unset($_SESSION['ftcevents_teamid']);
 
 ?>
