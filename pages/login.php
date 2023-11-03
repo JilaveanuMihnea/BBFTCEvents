@@ -21,37 +21,118 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $password = $_POST['password'];
 }
 
+
+$buttontext = "Conectează-te";
+$buttonicon = "fa-right-to-bracket";
+$buttonredirect = "login.php";
+$addeventredirect = "login.php";
+
+
+if (isset($_SESSION["ftcevents_teamid"]) && is_numeric($_SESSION['ftcevents_teamid'])) {
+  $login = new Login();
+  $is_logged = $login->check_login($_SESSION['ftcevents_teamid']);
+  if ($is_logged) {
+    $buttontext = "Deconectează-te";
+    $buttonicon = "fa-right-from-bracket";
+    $buttonredirect = 'logout.php';
+    $addeventredirect = 'eventadd.php';
+  }
+}
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <link rel="stylesheet" type="text/css" href="../style/login_style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Login</title>
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap"
+    rel="stylesheet"
+  />
 
+  <script
+    src="https://kit.fontawesome.com/922eec37ec.js"
+    crossorigin="anonymous"
+  ></script>
+
+  <link rel="stylesheet" type="text/css" href="../style/style.css" />
+  <link rel="stylesheet" type="text/css" href="../style/login.css" />
 </head>
 
 <body>
-  <div class="wrapper">
-    <center><img class="logo" src="https://shorturl.at/vJV16" ; height="150" width="100"></center>
-    <form method="post" action="">
+
+  <!-- navbar + sidemenu -->
+  <div id="obfuscate"></div>
+  <header id="navbar">
+    <a href="#" class="menu-bars" id="show-menu">
+      <i class="fa-solid fa-bars fa-lg"></i>
+    </a>
+    <!-- <input type="text" class="searchbar"> -->
+    <nav id="nav-menu">
+      <ul class="nav-menu-items">
+        <div id="navbar-toggle">
+          <div class="menu-bars" id="hide-menu">
+            <i class="fa-solid fa-bars fa-lg nav-icon"></i>
+          </div>
+          <a href="#"><img class="website-logo" /> Website Name </a>
+        </div>
+        <hr />
+        <div class="nav-section">
+          <!-- add buttons here -->
+          <li class="nav-text"><a href="<?php echo $addeventredirect?>"><i class="fa-solid fa-plus nav-icon"></i> Adauga Eveniment</a> </li>
+          <li class="nav-text"><a href="<?php echo $buttonredirect?>"><i class="fa-solid <?php echo $buttonicon ?> nav-icon"></i>
+              <?php echo $buttontext ?>
+            </a> </li>
+          <li class="nav-text"><a href="https://www.instagram.com/botsbrave/"><i class="fa-brands fa-instagram nav-icon"></i> Contact</a></li>
+          <li class="nav-text"><a href="https://github.com/JilaveanuMihnea/BBFTCEvents"><i class="fa-brands fa-github nav-icon"></i> Github</a></li>
+        </div>
+      </ul>
+    </nav>
+  </header>
 
 
-      <input value="<?php echo $team_login ?>" name="team_login" type="text" id="text" placeholder="username" required><br><br>
-      <input value="<?php echo $password ?>" name="password" type="text" id="text" placeholder="password"
-        required><br><br>
+  <div class="main-container">
+    <h1>Conectează-te</h1>
+    <br>
+    <hr />
+    <br>
+    <form>
+      <input name="team_login" value="<?php echo $team_login ?>" type="text" placeholder="Nume utilizator" required> <br> <br>
+      <input name="password" value="<?php echo $password ?>" type="password" placeholder="Parola" required> <br> <br>
 
-      <center><input type="submit" id="button" value="Log in"></center>
-
+      <input type="submit" value="Conectează-te">
     </form>
-  </div>
-</body>
 
+  </div>
+
+  <!-- <div class="wrapper">
+    <center>
+      <img class="logo" />
+    </center>
+    <form method="post" action="">
+      <input
+        value=""
+        name="team_login"
+        type="text"
+        id="text"
+        placeholder="username"
+        required
+      /><br /><br />
+      <input
+        value=""
+        name="password"
+        type="password"
+        id="text"
+        placeholder="password"
+        required
+      /><br /><br />
+
+      <center><input type="submit" id="button" value="Log in" /></center>
+    </form>
+  </div> -->
+</body>
 </html>

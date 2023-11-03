@@ -3,7 +3,7 @@
   margin: 0;
   padding: 0;
   font-size: 16px;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   /* background-color: #004b7a; */
 }
 
@@ -14,7 +14,7 @@ body {
 }
 
 hr {
-  background-color: #464646;
+  background-color: #46464652;
   height: 1px;
   border: none;
 }
