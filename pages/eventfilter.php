@@ -2,10 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Event search</title>
 
     <script
@@ -13,30 +10,15 @@
       crossorigin="anonymous"
     ></script>
 
-    <link
-      rel="preconnect"
-      href="https://fonts.googleapis.com"
-    />
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin
-    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
       rel="stylesheet"
     />
 
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../style/style.css"
-    />
-    <link
-      rel="stylesheet"
-      type="text/css"
-      href="../style/eventfilter.css"
-    />
+    <link rel="stylesheet" type="text/css" href="../style/style.css" />
+    <link rel="stylesheet" type="text/css" href="../style/eventfilter.css" />
   </head>
   <body>
     <div id="popup-obfuscate"></div>
@@ -50,10 +32,7 @@
     <div class="main-container">
       <div class="event-container">
         <div class="event-img-container">
-          <img
-            src="../data/eventimgs/jkhgjh.png"
-            class="event-img"
-          />
+          <img src="../data/eventimgs/jkhgjh.png" class="event-img" />
         </div>
         <div class="event-text-container">
           <h1 class="event-name">Nume Eveniment</h1>
@@ -71,23 +50,24 @@
       </div>
     </div>
 
-    <form class="popup-form">
+    <form method="get" action="" class="popup-form">
       <div class="popup">
         <div>
           <h1 class="popup-title">Selecteaza filtre</h1>
+          <i class="fa-solid fa-xmark close-button"></i>
           <hr />
         </div>
         <div class="flexhere">
           <!-- judete -->
           <div class="dropdown">
             <div class="select-btn">
-              <span class="btn-text">Selecteaza judete</span>
+              <span class="btn-text" id="btn-text-jud">Selecteaza judete</span>
               <span class="arrow-down">
                 <i class="fa-solid fa-chevron-down"></i>
               </span>
             </div>
-            <ul class="list-items">
-              <label for="Prahova">
+            <ul class="list-items" id="jud">
+              <!-- <label for="Prahova">
                 <li class="item">
                   <input
                     type="checkbox"
@@ -100,48 +80,19 @@
                   </span>
                   <span class="item-text">Prahova</span>
                 </li>
-              </label>
-              <label for="Prahova">
-                <li class="item">
-                  <input
-                    type="checkbox"
-                    name="Prahova"
-                    id="Prahova"
-                    class="selection"
-                  />
-                  <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                  </span>
-                  <span class="item-text">Prahova</span>
-                </li>
-              </label>
-              <!-- todo: insert dropdown options here -->
+              </label> -->
             </ul>
           </div>
 
           <!-- online/fizic -->
           <div class="dropdown">
             <div class="select-btn">
-              <span class="btn-text">Selecteaza judete</span>
+              <span class="btn-text" id="btn-text-fmt">Selecteaza format</span>
               <span class="arrow-down">
                 <i class="fa-solid fa-chevron-down"></i>
               </span>
             </div>
-            <ul class="list-items">
-              <label for="Prahova">
-                <li class="item">
-                  <input
-                    type="checkbox"
-                    name="Prahova"
-                    id="Prahova"
-                    class="selection"
-                  />
-                  <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                  </span>
-                  <span class="item-text">Prahova</span>
-                </li>
-              </label>
+            <ul class="list-items" id="fmt">
               <!-- todo: insert dropdown options here -->
             </ul>
           </div>
@@ -149,35 +100,17 @@
           <!-- tip eveniment -->
           <div class="dropdown">
             <div class="select-btn">
-              <span class="btn-text">Selecteaza judete</span>
+              <span class="btn-text" id="btn-text-tip">Selecteaza tip</span>
               <span class="arrow-down">
                 <i class="fa-solid fa-chevron-down"></i>
               </span>
             </div>
-            <ul class="list-items">
-              <label for="Prahova">
-                <li class="item">
-                  <input
-                    type="checkbox"
-                    name="Prahova"
-                    id="Prahova"
-                    class="selection"
-                  />
-                  <span class="checkbox">
-                    <i class="fa-solid fa-check check-icon"></i>
-                  </span>
-                  <span class="item-text">Prahova</span>
-                </li>
-              </label>
+            <ul class="list-items" id="tip">
               <!-- todo: insert dropdown options here -->
             </ul>
           </div>
           <center>
-            <input
-              type="submit"
-              value="Filtreaza"
-              class="submit"
-            />
+            <input type="submit" value="Filtreaza" class="submit" />
           </center>
         </div>
       </div>

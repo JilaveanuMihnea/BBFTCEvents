@@ -60,7 +60,7 @@ if (isset($_SESSION["ftcevents_teamid"]) && is_numeric($_SESSION['ftcevents_team
   ></script>
 
   <link rel="stylesheet" type="text/css" href="../style/style.css" />
-  <link rel="stylesheet" type="text/css" href="../style/login.css" />
+  <link href="../style/login.css?<?=filemtime("../style/login.css")?>" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
@@ -101,38 +101,14 @@ if (isset($_SESSION["ftcevents_teamid"]) && is_numeric($_SESSION['ftcevents_team
     <hr />
     <br>
     <form>
-      <input name="team_login" value="<?php echo $team_login ?>" type="text" placeholder="Nume utilizator" required> <br> <br>
-      <input name="password" value="<?php echo $password ?>" type="password" placeholder="Parola" required> <br> <br>
+      <input class="text" name="team_login" value="<?php echo $team_login ?>" type="text" placeholder="Nume utilizator" required> <br> <br>
+      <input class="text" name="password" value="<?php echo $password ?>" type="password" placeholder="Parola" required> <br> <br>
 
-      <input type="submit" value="Conectează-te">
+      <input class="submit" type="submit" value="Conectează-te">
     </form>
 
   </div>
 
-  <!-- <div class="wrapper">
-    <center>
-      <img class="logo" />
-    </center>
-    <form method="post" action="">
-      <input
-        value=""
-        name="team_login"
-        type="text"
-        id="text"
-        placeholder="username"
-        required
-      /><br /><br />
-      <input
-        value=""
-        name="password"
-        type="password"
-        id="text"
-        placeholder="password"
-        required
-      /><br /><br />
-
-      <center><input type="submit" id="button" value="Log in" /></center>
-    </form>
-  </div> -->
+  <script src="../js/script.js"></script>
 </body>
 </html>

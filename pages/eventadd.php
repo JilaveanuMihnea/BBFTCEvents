@@ -14,8 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   //check data, add to db if valid
   $_POST['eventid'] = $filename;
-  $filename = "../data/eventimgs/" . $filename . ".png";
-  $_POST['event_img'] = $filename;
+  $_POST['event_img'] = "../data/eventimgs/" . $filename . ".png";
   $event = new Event();
   $result = $event->evaluate($_POST, $_SESSION['teamid']);
 
@@ -28,6 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     //write marker data to jsonfile
     move_uploaded_file($_FILES['event_img']['tmp_name'], $filename);
+    $event['event_id'] = $filename;
     $event = $_POST;
     $event['teamid'] = $_SESSION['teamid'];
     $event['event_img'] = "../data/eventimgs/" . $filename;
@@ -89,8 +89,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
+
+
   <div class="wrapper">
+    <div>
     <h1>Adaugă un eveniment nou:</h1>
+    <hr>
+    </div>
+    
     <form method="post" enctype="multipart/form-data" action="">
 
       <input name="event_name" type="text" id="e_name" placeholder="Nume eveniment" /><br><br>
