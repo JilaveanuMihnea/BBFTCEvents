@@ -2,11 +2,21 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
     <title>eventadd</title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preconnect"
+      href="https://fonts.googleapis.com"
+    />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin
+    />
     <link
       href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800;900&display=swap"
       rel="stylesheet"
@@ -19,8 +29,15 @@
       crossorigin="anonymous"
     ></script>
 
-    <link rel="stylesheet" type="text/css" href="../style/style.css" />
-    <link rel="stylesheet" href="../style/eventadd.css" />
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="../style/style.css"
+    />
+    <link
+      rel="stylesheet"
+      href="../style/eventadd.css"
+    />
   </head>
   <body>
     <div class="navbar-sim"></div>
@@ -59,7 +76,11 @@
         <br />
         <br />
 
-        <label for="e_img" class="custom-upload">upload</label>
+        <label
+          for="e_img"
+          class="custom-upload"
+          ><span id="crazy">Incarca o imagine</span></label
+        >
         <input
           class="img"
           name="event_img"
@@ -91,12 +112,28 @@
         <br />
         <br />
 
-        <center><input type="submit" id="button" value="Add event" /></center>
-        <input name="event_lat" type="hidden" id="e_lat" />
-        <input name="event_lng" type="hidden" id="e_lng" />
+        <center>
+          <input
+            type="submit"
+            id="button"
+            value="Add event"
+            class="submit"
+          />
+        </center>
+        <input
+          name="event_lat"
+          type="hidden"
+          id="e_lat"
+        />
+        <input
+          name="event_lng"
+          type="hidden"
+          id="e_lng"
+        />
       </form>
     </div>
 
+    <script src="../js/eventadd.js"></script>
     <script
       async
       src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByIrjtaUZVRpacy8BFWLoHpmFpDhu_RUk&libraries=places&callback=initMap"

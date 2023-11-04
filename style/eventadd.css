@@ -77,7 +77,19 @@ textarea:focus {
 }
 
 .custom-upload {
-  margin-bottom: 30px;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 50px;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  border-radius: 25px;
+  background-color: transparent;
+  color: black;
+  padding: 20px;
+  transition: all 0.3s ease-out;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
 
 input.img {
@@ -112,4 +124,16 @@ input .pac-container {
 
 .pac-item:hover {
   background-color: rgb(243, 237, 237);
+}
+
+input.submit {
+  width: 100%;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 1);
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  border-radius: 25px;
+  color: rgb(236, 228, 228);
+  padding: 20px;
+  transition: all 0.3s ease-out;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
 }
