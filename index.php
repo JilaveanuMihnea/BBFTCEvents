@@ -1,8 +1,8 @@
 <?php
 session_start();
 // echo $_SESSION['ftcevents_teamid'];
-include("../classes/login.php");
-include("../classes/connect.php");
+include("classes/login.php");
+include("classes/connect.php");
 
 $buttontext = "Conectează-te";
 $buttonicon = "fa-right-to-bracket";
@@ -38,8 +38,8 @@ if (isset($_SESSION["ftcevents_teamid"]) && is_numeric($_SESSION['ftcevents_team
 
   <script src="https://kit.fontawesome.com/922eec37ec.js" crossorigin="anonymous"></script>
 
-  <link rel="stylesheet" type="text/css" href="../style/style.css" />
-  <link rel="stylesheet" href="../style/index.css" />
+  <link rel="stylesheet" type="text/css" href="style/style.css" />
+  <link rel="stylesheet" href="style/index.css" />
 </head>
 
 <body>
@@ -75,8 +75,8 @@ if (isset($_SESSION["ftcevents_teamid"]) && is_numeric($_SESSION['ftcevents_team
 
   <div id="map"></div>
 
-  <script src="../js/script.js"></script>
-  <script src="../js/map.js"></script>
+  <script src="js/script.js"></script>
+  <script src="js/map.js"></script>
   <script async
     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyByIrjtaUZVRpacy8BFWLoHpmFpDhu_RUk&callback=initMap"> </script>
 
