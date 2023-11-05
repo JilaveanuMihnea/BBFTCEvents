@@ -3,6 +3,24 @@ session_start();
 include("../classes/connect.php");
 include("../classes/login.php");
 
+$buttontext = "Conectează-te";
+$buttonicon = "fa-right-to-bracket";
+$buttonredirect = "login.php";
+$addeventredirect = "login.php";
+
+
+if (isset($_SESSION["ftcevents_teamid"]) && is_numeric($_SESSION['ftcevents_teamid'])) {
+  $login = new Login();
+  $is_logged = $login->check_login($_SESSION['ftcevents_teamid']);
+  if ($is_logged) {
+    $buttontext = "Deconectează-te";
+    $buttonicon = "fa-right-from-bracket";
+    $buttonredirect = 'logout.php';
+    $addeventredirect = 'eventadd.php';
+  }
+}
+
+
 $team_login = "";
 $password = "";
 
@@ -22,22 +40,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 }
 
 
-$buttontext = "Conectează-te";
-$buttonicon = "fa-right-to-bracket";
-$buttonredirect = "login.php";
-$addeventredirect = "login.php";
 
-
-if (isset($_SESSION["ftcevents_teamid"]) && is_numeric($_SESSION['ftcevents_teamid'])) {
-  $login = new Login();
-  $is_logged = $login->check_login($_SESSION['ftcevents_teamid']);
-  if ($is_logged) {
-    $buttontext = "Deconectează-te";
-    $buttonicon = "fa-right-from-bracket";
-    $buttonredirect = 'logout.php';
-    $addeventredirect = 'eventadd.php';
-  }
-}
 ?>
 
 <!DOCTYPE html>
@@ -100,7 +103,7 @@ if (isset($_SESSION["ftcevents_teamid"]) && is_numeric($_SESSION['ftcevents_team
     <br>
     <hr />
     <br>
-    <form>
+    <form method="post" action="">
       <input class="text" name="team_login" value="<?php echo $team_login ?>" type="text" placeholder="Nume utilizator" required> <br> <br>
       <input class="text" name="password" value="<?php echo $password ?>" type="password" placeholder="Parola" required> <br> <br>
 

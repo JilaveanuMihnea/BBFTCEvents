@@ -15,9 +15,11 @@ echo "</pre>";
 </head>
 <body>
   <form method="post" action="">
-    <input type="checkbox" name="dogus" id="haha" style="display:none">
-    <label for="haha"> googog</label>
-    <input type="submit" value="go">
+    <select name="tip" required>
+      <option value="">workshop</option>
+      <option value="demo">demo</option>
+    </select>
+    <input type="submit" value="submit">
   </form>
 </body>
 </html>
