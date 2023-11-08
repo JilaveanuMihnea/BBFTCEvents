@@ -19,6 +19,7 @@ class Login
 
       if ($password == $row['password']) {
         $_SESSION['ftcevents_teamid'] = $row['teamid'];
+        $_SESSION['team_number'] = $row['team_number'];
       } else {
         $this->error .= "wrong password<br>";
       }

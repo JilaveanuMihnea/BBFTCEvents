@@ -2,11 +2,6 @@
   session_start();
   include("../classes/allclasses.php");
 
-  echo "<pre>";
-  print_r($_GET);
-
-  echo "</pre>";
-
   $buttontext = "Conectează-te";
   $buttonicon = "fa-right-to-bracket";
   $buttonredirect = "login.php";
@@ -23,12 +18,18 @@
     }
   }
 
+  date_default_timezone_set('Europe/Bucharest');
+  $date = date('m/d/Y h:i:s a', time());
 
-
-  if($_GET){
-    $event = new Event();
-    $event->get_events($_GET);
-  }
+  $event = new Event();
+  $events = $event->get_events($_GET);
+    // echo '<br/>';
+    // $evdate= date('m/d/Y h:i:s a', strtotime($events[0]['event_time']));
+    // echo '<br/>';
+    // if($evdate >= $date){
+    //   echo 'nu inca';
+    // }
+  
 
 
 ?>
@@ -66,8 +67,14 @@
 
     <div class="main-container">
       <?php
-
-        include("eventcardtemplate.php");
+      if($events){
+        foreach($events as $row){
+          include("eventcardtemplate.php");
+        }
+      }else{
+        
+      }
+        
       ?>
       
     </div>

@@ -1,13 +1,12 @@
 <?php
 session_start();
 // echo $_SESSION['ftcevents_teamid'];
-include("classes/login.php");
-include("classes/connect.php");
+include("classes/allclasses.php");
 
 $buttontext = "Conectează-te";
 $buttonicon = "fa-right-to-bracket";
-$buttonredirect = "login.php";
-$addeventredirect = "login.php";
+$buttonredirect = "pages/login.php";
+$addeventredirect = "pages/login.php";
 
 
 if (isset($_SESSION["ftcevents_teamid"]) && is_numeric($_SESSION['ftcevents_teamid'])) {
@@ -16,8 +15,8 @@ if (isset($_SESSION["ftcevents_teamid"]) && is_numeric($_SESSION['ftcevents_team
   if ($is_logged) {
     $buttontext = "Deconectează-te";
     $buttonicon = "fa-right-from-bracket";
-    $buttonredirect = 'logout.php';
-    $addeventredirect = 'eventadd.php';
+    $buttonredirect = 'pages/logout.php';
+    $addeventredirect = 'pages/eventadd.php';
   }
 }
 
@@ -49,6 +48,12 @@ if (isset($_SESSION["ftcevents_teamid"]) && is_numeric($_SESSION['ftcevents_team
     <a href="#" class="menu-bars" id="show-menu">
       <i class="fa-solid fa-bars fa-lg"></i>
     </a>
+    <div id="thing">
+      <a href="pages/eventfilter.php" class="ev-search-link">Lista evenimente</a>
+      <?php
+        echo '<a href="pages/team.php?nb=19141" class="corner-img"><img src="data/eventimgs/343451851501.png"></a>';
+      ?>
+    </div>
     <!-- <input type="text" class="searchbar"> -->
     <nav id="nav-menu">
       <ul class="nav-menu-items">

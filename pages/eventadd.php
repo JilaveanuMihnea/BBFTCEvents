@@ -180,7 +180,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <div class="dropdowns">
         <select name="event_format" id="fmt" required>
           <option value="">Alege format</option>
-          <option value="onl">Online</option>
+          <!-- <option value="onl">Online</option> -->
           <option value="fiz">Fizic</option>
         </select>
         <select name="event_type" id="tip" required>

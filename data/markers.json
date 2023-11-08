@@ -1,2 +1,24 @@
 [
-{"event_name":"adswf","event_location":"Curtea de Arge\u0219, Rom\u00e2nia","event_time":"2023-11-18T18:59","event_lat":"45.14059659999999","event_lng":"24.6685182","eventid":"02614138657","event_img":"..\/data\/eventimgs\/02614138657.png","team_name":"BraveBots","team_number":"19141"}]
+  {
+    "event_name": "Demo BraveBots",
+    "event_location": "Palatul Culturii, Bulevardul Republicii, Ploie\u0219ti, Rom\u00e2nia",
+    "event_time": "2023-11-18T11:00",
+    "event_lat": "44.94121609999999",
+    "event_lng": "26.0226792",
+    "eventid": "343451851501",
+    "event_img": "../data/eventimgs/343451851501.png",
+    "team_name": "BraveBots",
+    "team_number": "19141"
+  },
+  {
+    "event_name": "Sesiune spionaj Ro2",
+    "event_location": "Politehnica University of Bucharest, Splaiul Independen\u021bei, Bucure\u0219ti, Rom\u00e2nia",
+    "event_time": "2023-11-25T14:15",
+    "event_lat": "44.4386064",
+    "event_lng": "26.0494925",
+    "eventid": "3479730653321306",
+    "event_img": "../data/eventimgs/3479730653321306.png",
+    "team_name": "BraveBots",
+    "team_number": "19141"
+  }
+]

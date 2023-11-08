@@ -19,7 +19,7 @@ def seekndestroy():
       data_file.write(json_object)
     
 
-schedule.every().hour.do(seekndestroy)
+schedule.every().second.do(seekndestroy)
 
 while 1:
     schedule.run_pending()

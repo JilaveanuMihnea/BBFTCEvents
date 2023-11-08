@@ -1,7 +1,6 @@
 <?php
 session_start();
-include("../classes/connect.php");
-include("../classes/login.php");
+include("../classes/allclasses.php");
 
 $buttontext = "Conectează-te";
 $buttonicon = "fa-right-to-bracket";
@@ -31,7 +30,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if ($result != "") {
     echo $result;
   } else {
-    header("Location: index.php");
+    header("Location: ../index.php");
     die;
   }
 
@@ -104,12 +103,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <hr />
     <br>
     <form method="post" action="">
-      <input class="text" name="team_login" value="<?php echo $team_login ?>" type="text" placeholder="Nume utilizator" required> <br> <br>
+      <input class="text" name="team_login" value="<?php echo $team_login ?>" type="text" placeholder="Nume utilizator"  autocomplete="off" required> <br> <br>
       <input class="text" name="password" value="<?php echo $password ?>" type="password" placeholder="Parola" required> <br> <br>
 
       <input class="submit" type="submit" value="Conectează-te">
     </form>
-
+    <div class="signup-info">
+      Conturile sunt doar pentru echipe de robotica <br>
+      Pentru creearea unui cont, scrieti-ne pe instagram @<a href="https://www.instagram.com/botsbrave/">bravebots</a>
+    </div>
   </div>
 
   <script src="../js/script.js"></script>

@@ -51,8 +51,10 @@ class Event
   }
 
   public function get_events($conditions){
-    $query = "select * from events";
+    date_default_timezone_set('Europe/Bucharest');
+    $query = "select * from events order by event_time asc";
     if($conditions){
+      $query = "select * from events";
       $query .= " where";
       $jud = "";
       $fmt = "";
@@ -90,8 +92,23 @@ class Event
         $query .= " event_type in " . $tip . ')';
       }
     }
-    echo $query;
     
+    $DB = new Database();
+    $result = $DB->read($query);
+
+    return $result;
+  }
+
+  public function get_event($id){
+    $query = "select * from events where eventid = '$id' limit 1";
+    $DB = new Database();
+    return $DB->read($query);
+  }
+
+  public function get_team_events($team_number){
+    $query = "select * from events where team_number = '$team_number'";
+    $DB = new Database();
+    return $DB->read($query);
   }
 }
 
