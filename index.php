@@ -8,6 +8,7 @@ $buttonicon = "fa-right-to-bracket";
 $buttonredirect = "pages/login.php";
 $addeventredirect = "pages/login.php";
 
+$is_logged = false;
 
 if (isset($_SESSION["ftcevents_teamid"]) && is_numeric($_SESSION['ftcevents_teamid'])) {
   $login = new Login();
@@ -51,7 +52,10 @@ if (isset($_SESSION["ftcevents_teamid"]) && is_numeric($_SESSION['ftcevents_team
     <div id="thing">
       <a href="pages/eventfilter.php" class="ev-search-link">Lista evenimente</a>
       <?php
-        echo '<a href="pages/team.php?nb=19141" class="corner-img"><img src="data/eventimgs/343451851501.png"></a>';
+      if($is_logged){
+        echo '<a href="pages/team.php?nb=' . $_SESSION['team_number']. '" class="corner-img"><img src="data/teamimgs/' . $_SESSION['team_number'] . '.png"></a>';
+      }
+        
       ?>
     </div>
     <!-- <input type="text" class="searchbar"> -->
