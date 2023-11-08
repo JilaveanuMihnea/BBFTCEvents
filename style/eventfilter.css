@@ -47,6 +47,7 @@ body {
   margin: 16px;
   border-radius: 16px;
   box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 
 .event-text-container {

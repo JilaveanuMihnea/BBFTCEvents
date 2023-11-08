@@ -49,6 +49,51 @@ class Event
     $DB = new Database();
     $DB->save($query);
   }
+
+  public function get_events($conditions){
+    $query = "select * from events";
+    if($conditions){
+      $query .= " where";
+      $jud = "";
+      $fmt = "";
+      $tip = "";
+      $cnt = 0;
+      foreach($conditions as $key => $value){
+        if(strlen($key)<=2){
+          if($jud=="")
+            $jud .= '(\'' . $key . '\'';
+          else
+            $jud .= ',\'' . $key . '\'';
+        }else if(strlen($key)==3){
+          if($fmt=="")
+            $fmt .= '(\'' . $key . '\'';
+          else
+            $fmt .= ',\'' . $key . '\'';
+        }else{
+          if($tip=="")
+            $tip .= '(\'' . $key . '\'';
+          else
+            $tip .= ',\'' . $key . '\'';
+        }
+      }
+      if($jud){
+        $query .= " event_jud in " . $jud . ')';
+        $cnt = 1;
+      }
+      if($fmt){
+        if($cnt) $query .= " and";
+        $query .= " event_format in " . $fmt . ')';
+        $cnt = 1;
+      }
+      if($tip){
+        if($cnt) $query .= " and";
+        $query .= " event_type in " . $tip . ')';
+      }
+    }
+    echo $query;
+    
+  }
 }
+
 
 ?>
