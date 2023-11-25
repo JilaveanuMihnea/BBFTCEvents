@@ -19,8 +19,21 @@
     }
   }
 
-  $evgetter = new Event();
-  $event_data = $evgetter->get_event($_GET['id']);
+  $o = "lllll";
+  // putenv('PATH=/usr/local/bin');
+  echo shell_exec('python /requesteventdelete.py'.$o);
+
+  if(isset($_GET['kill']) && $_GET['kill']){
+    
+    $evgetter = new Event();
+    $event_data = $evgetter->get_event($_GET['kill']);
+    // header("Location ../index.php");
+    // die;
+  }else{
+    $evgetter = new Event();
+    $event_data = $evgetter->get_event($_GET['id']);
+  }
+  
 ?>
 
 <!DOCTYPE html>
@@ -87,10 +100,19 @@
     <?php
       if(isset($_SESSION['team_number']) && is_numeric($_SESSION['team_number'])){
         if($_SESSION['team_number']==$event_data[0]['team_number']){
-          echo  '<center><button>Sterge eveniment</button></center>';
+          echo  '<center><button><i class="fa-solid fa-trash"></i> Sterge eveniment</button></center>';
         }
       }
     ?>
+
+    <div class="delete-form">
+      <i class="fa-solid fa-xmark"></i>
+      <form method="get" action="">
+        <p>Confirma stergerea evenimentului</p>
+        <input type="hidden" value="<?php echo $event_data[0]['eventid']?>" name="kill">
+        <input type="submit" value="Sterge eveniment">
+      </form>
+    </div>
 
     <div class="main-container">
       <h1><?php echo $event_data[0]['event_name']?></h1>
@@ -101,7 +123,7 @@
         <ul class="event-details">
           <li>
             Organizat de: <br />
-            <a href="team.php?nb=<?php echo $event_data[0]['team_number']?>"><p><?php echo $event_data[0]['team_name']?></p></a>
+            <p><a href="team.php?nb=<?php echo $event_data[0]['team_number']?>"><?php echo $event_data[0]['team_name']?></a></p>
           </li>
           <li>
             Data si ora eveniment: <br />
