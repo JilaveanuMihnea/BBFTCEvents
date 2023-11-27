@@ -57,46 +57,46 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo $result;
 
   } else {
-
-    
     move_uploaded_file($_FILES['event_img']['tmp_name'], "../data/eventimgs/" . $filename . ".png");
-
-    //write marker data to jsonfile
     $event = $_POST;
-    unset($event['event_desc']);
-    unset($event['event_format']);
-    unset($event['event_type']);
-    unset($event['event_jud']);
-    $filename = '../data/markers.json';
-    // read the file if present
-    $handle = @fopen($filename, 'r+');
+    if($event['event_lat'] && $event['event_format']=="fiz"){
+      //write marker data to jsonfile
+      
+      unset($event['event_desc']);
+      unset($event['event_format']);
+      unset($event['event_type']);
+      unset($event['event_jud']);
+      $filename = '../data/markers.json';
+      // read the file if present
+      $handle = @fopen($filename, 'r+');
 
-    // create the file if needed
-    if ($handle === null) {
-      $handle = fopen($filename, 'w+');
-    }
-
-    if ($handle) {
-      // seek to the end
-      fseek($handle, 0, SEEK_END);
-
-      // are we at the end of is the file empty
-      if (ftell($handle) > 0) {
-        // move back a byte
-        fseek($handle, -1, SEEK_END);
-
-        // add the trailing comma
-        fwrite($handle, ',', 1);
-
-        // add the new json string
-        fwrite($handle, json_encode($event) . ']');
-      } else {
-        // write the first event inside an array
-        fwrite($handle, json_encode(array($event)));
+      // create the file if needed
+      if ($handle === null) {
+        $handle = fopen($filename, 'w+');
       }
 
-      // close the handle on the file
-      fclose($handle);
+      if ($handle) {
+        // seek to the end
+        fseek($handle, 0, SEEK_END);
+
+        // are we at the end of is the file empty
+        if (ftell($handle) > 0) {
+          // move back a byte
+          fseek($handle, -1, SEEK_END);
+
+          // add the trailing comma
+          fwrite($handle, ',', 1);
+
+          // add the new json string
+          fwrite($handle, json_encode($event) . ']');
+        } else {
+          // write the first event inside an array
+          fwrite($handle, json_encode(array($event)));
+        }
+
+        // close the handle on the file
+        fclose($handle);
+      }
     }
     header("Location: ../index.php");
     die;
@@ -139,7 +139,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if($is_logged){
           echo '<a href="team.php?nb=' . $_SESSION['team_number']. '" class="corner-img"><img src="../data/teamimgs/' . $_SESSION['team_number'] . '.png"></a>';
         }
-          
         ?>
       </div>
       <!-- <input type="text" class="searchbar"> -->
@@ -203,14 +202,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       </div>
       <br />
       <br />
+      <center><p>Pentru ca evenimentul sa apara pe harta, alegeti o locatie predefinita</p></center>
       <input
         class="text"
         name="event_location"
         type="text"
         id="e_location"
         placeholder="Introdu o locatie"
-        required
       />
+      
       <br />
       <br />
       <input

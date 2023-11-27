@@ -9,20 +9,12 @@ class Event
   {
     $ok = true;
     $okauto = true;
-    foreach($data as $key => $value){
-      if(empty($value)){
-        if($key=='event_lat' || $key=='event_lng'){
-          $okauto = false;
-        }else{
-          $ok = false;
-        }
-      }
-    }
+    foreach($data as $key => $value)
+      if(empty($value) && $key!='event_lat' && $key!='event_lng')
+        $ok = false;
     
     if($ok==false) 
       $this->error .= "Te rog completeaza toate campurile";
-    else if($okauto==false) 
-      $this->error .= "Te rog alege o optiune automata pentru locatie";
   
     if ($this->error == "") {
       $this->create_event($data);
@@ -109,6 +101,12 @@ class Event
     $query = "select * from events where team_number = '$team_number'";
     $DB = new Database();
     return $DB->read($query);
+  }
+
+  public function delete_event($eventid){
+    $query = "delete from events where eventid = '$eventid' limit 1";
+    $DB = new Database();
+    $DB->delete($query);
   }
 }
 

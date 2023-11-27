@@ -19,17 +19,24 @@
     }
   }
 
-  $o = "lllll";
-  // putenv('PATH=/usr/local/bin');
-  echo shell_exec('python /requesteventdelete.py'.$o);
-
-  if(isset($_GET['kill']) && $_GET['kill']){
-    
+  if(isset($_POST['kill']) && $_POST['kill']){
+    //insure login
     $evgetter = new Event();
-    $event_data = $evgetter->get_event($_GET['kill']);
-    // header("Location ../index.php");
-    // die;
+    $event_data = $evgetter->get_event($_POST['kill']);
+    if(isset($_SESSION['team_number']) && is_numeric($_SESSION['team_number'])){
+      if($_SESSION['team_number']==$event_data[0]['team_number']){
+        //pyhton script to delte from json
+        shell_exec('python ../control/requesteventdelete.py ' .$_GET['kill']);
+        
+        //delete from db
+        $ev = new Event();
+        $ev->delete_event($_POST['kill']);
+      }
+    }
+    header("Location: ../index.php");
+    die;
   }else{
+    //todo check if id exists
     $evgetter = new Event();
     $event_data = $evgetter->get_event($_GET['id']);
   }
@@ -96,23 +103,22 @@
         </ul>
       </nav>
     </header>
-
+    
     <?php
       if(isset($_SESSION['team_number']) && is_numeric($_SESSION['team_number'])){
         if($_SESSION['team_number']==$event_data[0]['team_number']){
-          echo  '<center><button><i class="fa-solid fa-trash"></i> Sterge eveniment</button></center>';
+          echo  '<center><button id="delbtn"><i class="fa-solid fa-trash"></i> Sterge eveniment</button></center>
+                <div class="delete-form">
+                  <i class="fa-solid fa-xmark" id="closebtn"></i>
+                  <form method="post" action="">
+                    <p>Confirma stergerea evenimentului</p>
+                    <input type="hidden" value="<?php echo $event_data[0][\'eventid\']?>" name="kill">
+                    <input type="submit" value="Sterge eveniment">
+                  </form>
+                </div>';
         }
       }
     ?>
-
-    <div class="delete-form">
-      <i class="fa-solid fa-xmark"></i>
-      <form method="get" action="">
-        <p>Confirma stergerea evenimentului</p>
-        <input type="hidden" value="<?php echo $event_data[0]['eventid']?>" name="kill">
-        <input type="submit" value="Sterge eveniment">
-      </form>
-    </div>
 
     <div class="main-container">
       <h1><?php echo $event_data[0]['event_name']?></h1>
@@ -167,5 +173,6 @@
       </div>
     </div>
     <script src="../js/script.js"></script>
+    <script src="../js/eventshowcase.js"></script>
   </body>
 </html>

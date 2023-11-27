@@ -40,5 +40,11 @@ class Database
     }
   }
 
+
+  function delete($query){
+    $conn = $this->connect();
+    mysqli_query($conn, $query);
+    return;
+  }
 }
 ?>

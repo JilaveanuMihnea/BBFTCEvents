@@ -10,6 +10,7 @@ def eventpassed(ctime):
 def seekndestroy():
     with open(os.path.dirname(__file__) + "/../data/markers.json", encoding="utf-8") as data_file:
       data = json.load(data_file)
+      
     # maybe put this back in the with statement?
     for x in range(0, len(data)-1):
       if(eventpassed(data[x]["event_time"])):
