@@ -1,24 +1,13 @@
 [
   {
-    "event_name": "zzzzzzzz",
-    "event_location": "Bihor, Rom\u00e2nia",
-    "event_time": "2023-12-08T21:52",
-    "event_lat": "47.01575159999999",
-    "event_lng": "22.172266",
-    "eventid": "1535782418862334564",
-    "event_img": "../data/eventimgs/1535782418862334564.png",
-    "team_name": "BraveBots",
-    "team_number": "19141"
-  },
-  {
-    "event_name": "ahsfiudghifghols",
-    "event_location": "Boto\u0219ani, Rom\u00e2nia",
-    "event_time": "2023-12-06T21:53",
-    "event_lat": "47.7406537",
-    "event_lng": "26.6658127",
-    "eventid": "9748727815458773655",
-    "event_img": "../data/eventimgs/9748727815458773655.png",
-    "team_name": "BraveBots",
-    "team_number": "19141"
+    "event_name": "skjdbhyugasdulfa",
+    "event_location": "Bucure\u0219ti, Rom\u00e2nia",
+    "event_time": "2023-12-01T15:13",
+    "event_lat": "44.4267674",
+    "event_lng": "26.1025384",
+    "eventid": "69049031753458",
+    "event_img": "..\/data\/eventimgs\/69049031753458.png",
+    "team_name": "EchipaTest",
+    "team_number": "10101"
   }
-]
+,{"event_name":"lkjhvhjhkbjbjkh","event_location":"Maramure\u015f, Rom\u00e2nia","event_time":"2023-12-08T17:38","event_lat":"47.6737598","event_lng":"23.7456285","eventid":"769193175130591","event_img":"..\/data\/eventimgs\/769193175130591.png","team_name":"EchipaTest","team_number":"10101"}]

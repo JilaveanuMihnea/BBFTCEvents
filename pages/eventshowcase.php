@@ -20,13 +20,13 @@
   }
 
   if(isset($_POST['kill']) && $_POST['kill']){
-    //insure login
+    //insure correct login
     $evgetter = new Event();
     $event_data = $evgetter->get_event($_POST['kill']);
     if(isset($_SESSION['team_number']) && is_numeric($_SESSION['team_number'])){
       if($_SESSION['team_number']==$event_data[0]['team_number']){
         //pyhton script to delte from json
-        shell_exec('python ../control/requesteventdelete.py ' .$_GET['kill']);
+        shell_exec('python ../control/requesteventdelete.py ' .$_POST['kill']);
         
         //delete from db
         $ev = new Event();
@@ -112,7 +112,7 @@
                   <i class="fa-solid fa-xmark" id="closebtn"></i>
                   <form method="post" action="">
                     <p>Confirma stergerea evenimentului</p>
-                    <input type="hidden" value="<?php echo $event_data[0][\'eventid\']?>" name="kill">
+                    <input type="hidden" value="' .  $event_data[0]['eventid'] . ' " name="kill">
                     <input type="submit" value="Sterge eveniment">
                   </form>
                 </div>';

@@ -57,7 +57,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     echo $result;
 
   } else {
+    $imgname = "../data/eventimgs/" . $filename . ".png";
     move_uploaded_file($_FILES['event_img']['tmp_name'], "../data/eventimgs/" . $filename . ".png");
+
+    $image = new Image();
+    $image->crop_image($imgname, $imgname, 800, 800);
+    
     $event = $_POST;
     if($event['event_lat'] && $event['event_format']=="fiz"){
       //write marker data to jsonfile

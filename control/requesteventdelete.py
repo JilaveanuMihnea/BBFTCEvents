@@ -17,4 +17,4 @@ with open(os.path.dirname(__file__) + "/../data/markers.json", "w") as data_file
   json_object = json.dumps(data, indent=2)
   data_file.write(json_object)
 
-
+os.remove("../img/" + eventid +".png");

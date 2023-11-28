@@ -104,7 +104,7 @@ class Event
   }
 
   public function delete_event($eventid){
-    $query = "delete from events where eventid = '$eventid' limit 1";
+    $query = "delete from events where eventid = '$eventid'";
     $DB = new Database();
     $DB->delete($query);
   }

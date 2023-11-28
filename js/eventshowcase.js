@@ -1,4 +1,4 @@
-const overlay = document.querySelector("#obfuscate");
+// const overlay = document.querySelector("#obfuscate");
 const delbtn = document.querySelector("#delbtn");
 const delform = document.querySelector(".delete-form");
 const closebtn = document.querySelector("#closebtn");
@@ -18,5 +18,3 @@ overlay.addEventListener("click", function () {
   overlay.classList.remove("active");
   delform.classList.remove("active");
 });
-
-alert("dogus");
