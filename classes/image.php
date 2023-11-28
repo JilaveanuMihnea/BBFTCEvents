@@ -24,6 +24,24 @@ class Image{
     $new_image = imagecreatetruecolor($new_width, $new_height);
     imagecopyresampled($new_image, $original_image, 0, 0, 0, 0, $new_width, $new_height, $original_width, $original_height);
 
+    imagedestroy($original_image);
+
+    if($new_height>$new_width){
+      $diff = ($new_height-$new_width);
+      $y = round($diff/2);
+      $x = 0;
+    }else{
+      $diff = ($new_width-$new_height);
+      $y = 0;
+      $x = round($diff/2);
+    }
+
+    $new_cropped_image = imagecreatetruecolor($width, $height);
+    imagecopyresampled($new_cropped_image, $new_image, 0, 0, $x, $y, $width, $height, $width, $height);
+    imagedestroy($new_image);
+
     imagepng($new_image, $cropped_file_name);
+    imagedestroy($new_cropped_image);
+
   }
 }

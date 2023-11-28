@@ -67,7 +67,7 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: start;
-  align-items: center;
+  /* align-items: center; */
   width: 95%;
   max-width: 1100px;
   margin: auto;
@@ -84,8 +84,13 @@ button {
   transition: all 0.3s;
 }
 
-button:hover {
+#delbtn:hover {
   background-color: red;
+  transform: scale(1.05);
+}
+
+#editbtn:hover {
+  background-color: yellow;
   transform: scale(1.05);
 }
 

@@ -36,9 +36,12 @@
     header("Location: ../index.php");
     die;
   }else{
-    //todo check if id exists
     $evgetter = new Event();
     $event_data = $evgetter->get_event($_GET['id']);
+    if(!$event_data){
+      header("Location: ../index.php");
+      die;
+    }
   }
   
 ?>
@@ -108,6 +111,7 @@
       if(isset($_SESSION['team_number']) && is_numeric($_SESSION['team_number'])){
         if($_SESSION['team_number']==$event_data[0]['team_number']){
           echo  '<center><button id="delbtn"><i class="fa-solid fa-trash"></i> Sterge eveniment</button></center>
+                <center><a href="eventedit.php?id='. $event_data[0]['eventid'] .'"><button id="editbtn"><i class="fa-solid fa-gear"></i> Modifica eveniment</button></a></center>
                 <div class="delete-form">
                   <i class="fa-solid fa-xmark" id="closebtn"></i>
                   <form method="post" action="">

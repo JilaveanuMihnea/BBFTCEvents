@@ -1,13 +1,1 @@
-[
-  {
-    "event_name": "skjdbhyugasdulfa",
-    "event_location": "Bucure\u0219ti, Rom\u00e2nia",
-    "event_time": "2023-12-01T15:13",
-    "event_lat": "44.4267674",
-    "event_lng": "26.1025384",
-    "eventid": "69049031753458",
-    "event_img": "..\/data\/eventimgs\/69049031753458.png",
-    "team_name": "EchipaTest",
-    "team_number": "10101"
-  }
-,{"event_name":"lkjhvhjhkbjbjkh","event_location":"Maramure\u015f, Rom\u00e2nia","event_time":"2023-12-08T17:38","event_lat":"47.6737598","event_lng":"23.7456285","eventid":"769193175130591","event_img":"..\/data\/eventimgs\/769193175130591.png","team_name":"EchipaTest","team_number":"10101"}]
+[{"event_name":"asdfgasdf","event_location":"Bucure\u0219ti, Rom\u00e2nia","event_time":"2023-12-02T22:05","event_lat":"44.4267674","event_lng":"26.1025384","eventid":"6785901514705173","event_img":"..\/data\/eventimgs\/6785901514705173.png","team_name":"EchipaTest","team_number":"10101"}]
