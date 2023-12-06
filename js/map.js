@@ -48,10 +48,10 @@ async function initMap() {
 
     //alert('<img src="' + element.event_img + '" />');
     //todo add infowindow stuff
-    const infowindow = new google.maps.InfoWindow({
-      content: contentString,
-      maxWidth: 500,
-    });
+    // const infowindow = new google.maps.InfoWindow({
+    //   content: contentString,
+    //   maxWidth: 500,
+    // });
 
     // const markerimg =
 
@@ -68,16 +68,16 @@ async function initMap() {
       // }
     });
 
-    marker.addListener('mouseover', () => {
-      infowindow.open({
-        anchor: marker,
-        map,
-      });
-    });
+    // marker.addListener('mouseover', () => {
+    //   infowindow.open({
+    //     anchor: marker,
+    //     map,
+    //   });
+    // });
 
-    marker.addListener('mouseout', () => {
-      infowindow.close();
-    });
+    // marker.addListener('mouseout', () => {
+    //   infowindow.close();
+    // });
 
     marker.addListener('click', () => {
       window.location.href = marker.url;

@@ -1,6 +1,10 @@
 <?php
 session_start();
-include("../classes/allclasses.php");
+include("../classes/connect.php");
+include("../classes/login.php");
+include("../classes/image.php");
+include("../classes/events.php");
+include("../classes/team.php");
 
 
 $buttontext = "Conectează-te";
@@ -29,7 +33,27 @@ if(isset($_SESSION['team_number']) && is_numeric($_SESSION['team_number'])){
 }
 
 if($_SERVER['REQUEST_METHOD'] == 'POST'){
-  //todo sql query to edit event
+  $eveditor = new Event();
+  $eveditor->update_event($_POST);
+  
+
+  if($_FILES['event_img']['tmp_name']){
+    $imgname = "../data/eventimgs/" . $_POST['id'] . ".png";
+    move_uploaded_file($_FILES['event_img']['tmp_name'], "../data/eventimgs/" . $_POST['id'] . ".png");
+  
+    $image = new Image();
+    $image->crop_image($imgname, $imgname, 800, 800);
+  }
+
+  //todo python script to remove/add/update from markers.json
+  echo "<pre>";
+  echo print_r($_POST);
+  echo "</pre>";
+  echo shell_exec('python ../control/updateevent.py ' . $_POST['id'] . ' ' . escapeshellarg($_POST['event_name']) . ' ' . escapeshellarg($_POST['event_location']) . ' ' . escapeshellarg($_POST['event_time']) . ' ' . escapeshellarg($_POST['event_lat']) . ' ' . escapeshellarg($_POST['event_lng']));
+
+
+  header("Location: eventshowcase.php?id=" . $_POST['id']);
+  die;
 }
 
 ?>
@@ -39,7 +63,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Edit Event</title>
+  <title>Modifică Eveniment</title>
+  <link rel="icon"  href="../resources/img/favicon.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -54,43 +79,8 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 </head>
 
 <body>
-  <!-- navbar + sidemenu -->
-  <!-- navbar + sidemenu -->
-  <div id="obfuscate"></div>
-    <header id="navbar">
-      <a href="#" class="menu-bars" id="show-menu">
-        <i class="fa-solid fa-bars fa-lg"></i>
-      </a>
-      <div id="thing">
-        <a href="eventfilter.php" class="ev-search-link">Lista evenimente</a>
-        <?php
-        if($is_logged){
-          echo '<a href="team.php?nb=' . $_SESSION['team_number']. '" class="corner-img"><img src="../data/teamimgs/' . $_SESSION['team_number'] . '.png"></a>';
-        }
-        ?>
-      </div>
-      <!-- <input type="text" class="searchbar"> -->
-      <nav id="nav-menu">
-        <ul class="nav-menu-items">
-          <div id="navbar-toggle">
-            <div class="menu-bars" id="hide-menu">
-              <i class="fa-solid fa-bars fa-lg nav-icon"></i>
-            </div>
-            <a href="#"><img class="website-logo" /> Website Name </a>
-          </div>
-          <hr />
-          <div class="nav-section">
-            <!-- add buttons here -->
-            <li class="nav-text"><a href="<?php echo $addeventredirect?>"><i class="fa-solid fa-plus nav-icon"></i> Adauga Eveniment</a> </li>
-            <li class="nav-text"><a href="<?php echo $buttonredirect?>"><i class="fa-solid <?php echo $buttonicon ?> nav-icon"></i>
-                <?php echo $buttontext ?>
-              </a> </li>
-            <li class="nav-text"><a href="https://www.instagram.com/botsbrave/"><i class="fa-brands fa-instagram nav-icon"></i> Contact</a></li>
-            <li class="nav-text"><a href="https://github.com/JilaveanuMihnea/BBFTCEvents"><i class="fa-brands fa-github nav-icon"></i> Github</a></li>
-          </div>
-        </ul>
-      </nav>
-    </header>
+
+  <?php include("navbar.php") ?>
 
   <div class="dom-target">
     <div id="judet"><?php echo $event_data[0]['event_jud']?></div>
@@ -99,7 +89,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
 
   <div class="main-container">
     <div class="title-section">
-      <h1>Modifica Evenimentul</h1>
+      <h1>Modifică Evenimentul</h1>
       <hr />
     </div>
     <form
@@ -109,6 +99,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
       class="form-section"
       autocomplete="off"
     >
+      <input type="hidden" name="id" value="<?php echo $_GET['id']?>">
       <input
         class="text"
         name="event_name"
@@ -131,18 +122,18 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
           <option value="">Alege tip</option>
         </select>
         <select name="event_jud" id="jud" required>
-          <option value="">Alege judet</option>
+          <option value="">Alege judeţ</option>
         </select>
       </div>
       <br />
       <br />
-      <center><p>Pentru ca evenimentul sa apara pe harta, alegeti o locatie predefinita</p></center>
+      <center><p>Pentru ca evenimentul să apară pe hartă, alegeţi o locaţie predefinită</p></center>
       <input
         class="text"
         name="event_location"
         type="text"
         id="e_location"
-        placeholder="Introdu o locatie"
+        placeholder="Introduceţi o locaţie"
       />
       
       <br />
@@ -159,7 +150,7 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
       <br />
       <br />
       <label for="e_img" class="custom-upload">
-        <span id="crazy">Incarca o imagine</span>
+        <span id="crazy">Încarca o imagine</span>
       </label>
       <input
         class="img"
@@ -177,13 +168,13 @@ if($_SERVER['REQUEST_METHOD'] == 'POST'){
         type="text"
         id="e_desc"
         maxlength="900"
-        placeholder="Descriere"
+        placeholder="Descriere eveniment"
         required
       ><?php echo $event_data[0]['event_desc']?></textarea>
       <br />
       <br />
       <center>
-        <input type="submit" id="button" value="Add event" class="submit" />
+        <input type="submit" id="button" value="Aplică modificările" class="submit" />
       </center>
       <input name="event_lat" type="hidden" id="e_lat" />
       <input name="event_lng" type="hidden" id="e_lng" />

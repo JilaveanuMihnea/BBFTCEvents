@@ -106,9 +106,25 @@ class Event
   public function delete_event($eventid){
     $query = "delete from events where eventid = '$eventid'";
     $DB = new Database();
-    $DB->delete($query);
+    $DB->runq($query);
+  }
+
+  public function update_event($data){
+    $event_type = addslashes($data["event_type"]);
+    $event_jud = addslashes($data["event_jud"]);
+    $event_format = addslashes($data["event_format"]);
+    $event_name = addslashes($data["event_name"]);
+    $event_desc = addslashes($data["event_desc"]);
+    $event_location = addslashes($data["event_location"]);
+    $event_time = addslashes($data["event_time"]);
+    $eventid = addslashes($data["id"]);
+
+    $query = "update events set event_name = '$event_name', event_jud = '$event_jud', event_format = '$event_format', event_type = '$event_type', event_desc = '$event_desc', event_location = '$event_location', event_time = '$event_time' where eventid = '$eventid'";
+    $DB = new Database();
+    $DB->runq($query);
   }
 }
+
 
 
 ?>

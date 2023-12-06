@@ -12,7 +12,7 @@ fetch("../data/jud.json")
       if (element.ind == judet) {
         option.selected = true;
       }
-      console.log(option);
+      // console.log(option);
       dd.append(option);
     });
   });
@@ -28,13 +28,13 @@ fetch("../data/tip.json")
       if (element.ind == typ) {
         option.selected = true;
       }
-      console.log(option);
+      // console.log(option);
       dd.append(option);
     });
   });
 
 var input = document.querySelector(".img");
 input.addEventListener("change", function (e) {
-  console.log(this.files[0]["name"]);
+  // console.log(this.files[0]["name"]);
   document.querySelector("#crazy").innerText = this.files[0]["name"];
 });

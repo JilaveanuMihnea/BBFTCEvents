@@ -1,6 +1,10 @@
 <?php
   session_start();
-  include("../classes/allclasses.php");
+  include("../classes/connect.php");
+  include("../classes/login.php");
+  include("../classes/image.php");
+  include("../classes/events.php");
+  include("../classes/team.php");
 
   $buttontext = "Conectează-te";
   $buttonicon = "fa-right-to-bracket";
@@ -40,7 +44,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Event search</title>
+    <title>Listă Evenimente</title>
+    <link rel="icon"  href="../resources/img/favicon.png">
 
     <script
       src="https://kit.fontawesome.com/922eec37ec.js"
@@ -59,46 +64,11 @@
   </head>
   <body>
     <div id="popup-obfuscate"></div>
-    <!-- navbar + sidemenu -->
-    <div id="obfuscate"></div>
-    <header id="navbar">
-      <a href="#" class="menu-bars" id="show-menu">
-        <i class="fa-solid fa-bars fa-lg"></i>
-      </a>
-      <div id="thing">
-        <a href="eventfilter.php" class="ev-search-link">Lista evenimente</a>
-        <?php
-        if($is_logged){
-          echo '<a href="team.php?nb=' . $_SESSION['team_number']. '" class="corner-img"><img src="../data/teamimgs/' . $_SESSION['team_number'] . '.png"></a>';
-        }
-          
-        ?>
-      </div>
-      <!-- <input type="text" class="searchbar"> -->
-      <nav id="nav-menu">
-        <ul class="nav-menu-items">
-          <div id="navbar-toggle">
-            <div class="menu-bars" id="hide-menu">
-              <i class="fa-solid fa-bars fa-lg nav-icon"></i>
-            </div>
-            <a href="#"><img class="website-logo" /> Website Name </a>
-          </div>
-          <hr />
-          <div class="nav-section">
-            <!-- add buttons here -->
-            <li class="nav-text"><a href="<?php echo $addeventredirect?>"><i class="fa-solid fa-plus nav-icon"></i> Adauga Eveniment</a> </li>
-            <li class="nav-text"><a href="<?php echo $buttonredirect?>"><i class="fa-solid <?php echo $buttonicon ?> nav-icon"></i>
-                <?php echo $buttontext ?>
-              </a> </li>
-            <li class="nav-text"><a href="https://www.instagram.com/botsbrave/"><i class="fa-brands fa-instagram nav-icon"></i> Contact</a></li>
-            <li class="nav-text"><a href="https://github.com/JilaveanuMihnea/BBFTCEvents"><i class="fa-brands fa-github nav-icon"></i> Github</a></li>
-          </div>
-        </ul>
-      </nav>
-    </header>
+    
+    <?php include("navbar.php") ?>
 
     <div id="show-filters">
-      <i class="fa-solid fa-filter fa-lg"></i>Filtreaza evenimente
+      <i class="fa-solid fa-filter fa-lg"></i>Filtrează evenimente
     </div>
     <hr />
 
@@ -119,7 +89,7 @@
     <form method="get" action="" class="popup-form">
       <div class="popup">
         <div>
-          <h1 class="popup-title">Selecteaza filtre</h1>
+          <h1 class="popup-title">Selectează filtre</h1>
           <i class="fa-solid fa-xmark close-button"></i>
           <hr />
         </div>
@@ -127,7 +97,7 @@
           <!-- judete -->
           <div class="dropdown">
             <div class="select-btn">
-              <span class="btn-text" id="btn-text-jud">Selecteaza judete</span>
+              <span class="btn-text" id="btn-text-jud">Selectează judeţe</span>
               <span class="arrow-down">
                 <i class="fa-solid fa-chevron-down"></i>
               </span>
@@ -153,30 +123,28 @@
           <!-- online/fizic -->
           <div class="dropdown">
             <div class="select-btn">
-              <span class="btn-text" id="btn-text-fmt">Selecteaza format</span>
+              <span class="btn-text" id="btn-text-fmt">Selectează format</span>
               <span class="arrow-down">
                 <i class="fa-solid fa-chevron-down"></i>
               </span>
             </div>
             <ul class="list-items" id="fmt">
-              <!-- todo: insert dropdown options here -->
             </ul>
           </div>
 
           <!-- tip eveniment -->
           <div class="dropdown">
             <div class="select-btn">
-              <span class="btn-text" id="btn-text-tip">Selecteaza tip</span>
+              <span class="btn-text" id="btn-text-tip">Selectează tip</span>
               <span class="arrow-down">
                 <i class="fa-solid fa-chevron-down"></i>
               </span>
             </div>
             <ul class="list-items" id="tip">
-              <!-- todo: insert dropdown options here -->
             </ul>
           </div>
           <center>
-            <input type="submit" value="Filtreaza" class="submit" />
+            <input type="submit" value="Filtrează" class="submit" />
           </center>
         </div>
       </div>

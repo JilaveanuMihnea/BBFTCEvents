@@ -7,6 +7,20 @@ a {
   color: black;
 }
 
+button {
+  margin-bottom: 8px;
+  padding: 5px;
+  border: 1px solid black;
+  background-color: white;
+  border-radius: 16px;
+  transition: all 0.3s;
+}
+
+#editbtn:hover {
+  background-color: orange;
+  transform: scale(1.05);
+}
+
 .navbar-sim {
   width: 100%;
   height: 80px;
@@ -27,6 +41,7 @@ a {
   display: flex;
   flex-direction: row;
   justify-content: center;
+  align-items: center;
 }
 
 h1 {
@@ -35,6 +50,10 @@ h1 {
 
 .team-bio {
   font-size: 1.3rem;
+}
+
+.team-contact{
+  margin-top: 8px;
 }
 
 .profile-img {

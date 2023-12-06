@@ -40,7 +40,7 @@ class Image{
     imagecopyresampled($new_cropped_image, $new_image, 0, 0, $x, $y, $width, $height, $width, $height);
     imagedestroy($new_image);
 
-    imagepng($new_image, $cropped_file_name);
+    imagepng($new_cropped_image, $cropped_file_name);
     imagedestroy($new_cropped_image);
 
   }

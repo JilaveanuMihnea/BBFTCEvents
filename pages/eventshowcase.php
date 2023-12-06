@@ -1,6 +1,10 @@
 <?php
   session_start();  
-  include("../classes/allclasses.php");
+  include("../classes/connect.php");
+  include("../classes/login.php");
+  include("../classes/image.php");
+  include("../classes/events.php");
+  include("../classes/team.php");
 
   $buttontext = "Conectează-te";
   $buttonicon = "fa-right-to-bracket";
@@ -52,6 +56,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title><?php echo $event_data[0]['event_name']?></title>
+    <link rel="icon"  href="../resources/img/favicon.png">
 
     <script
       src="https://kit.fontawesome.com/922eec37ec.js"
@@ -69,55 +74,20 @@
     <link rel="stylesheet" type="text/css" href="../style/eventshowcase.css" />
   </head>
   <body>
-    <!-- navbar + sidemenu -->
-    <div id="obfuscate"></div>
-    <header id="navbar">
-      <a href="#" class="menu-bars" id="show-menu">
-        <i class="fa-solid fa-bars fa-lg"></i>
-      </a>
-      <div id="thing">
-        <a href="eventfilter.php" class="ev-search-link">Lista evenimente</a>
-        <?php
-        if($is_logged){
-          echo '<a href="team.php?nb=' . $_SESSION['team_number']. '" class="corner-img"><img src="../data/teamimgs/' . $_SESSION['team_number'] . '.png"></a>';
-        }
-          
-        ?>
-      </div>
-      <!-- <input type="text" class="searchbar"> -->
-      <nav id="nav-menu">
-        <ul class="nav-menu-items">
-          <div id="navbar-toggle">
-            <div class="menu-bars" id="hide-menu">
-              <i class="fa-solid fa-bars fa-lg nav-icon"></i>
-            </div>
-            <a href="#"><img class="website-logo" /> Website Name </a>
-          </div>
-          <hr />
-          <div class="nav-section">
-            <!-- add buttons here -->
-            <li class="nav-text"><a href="<?php echo $addeventredirect?>"><i class="fa-solid fa-plus nav-icon"></i> Adauga Eveniment</a> </li>
-            <li class="nav-text"><a href="<?php echo $buttonredirect?>"><i class="fa-solid <?php echo $buttonicon ?> nav-icon"></i>
-                <?php echo $buttontext ?>
-              </a> </li>
-            <li class="nav-text"><a href="https://www.instagram.com/botsbrave/"><i class="fa-brands fa-instagram nav-icon"></i> Contact</a></li>
-            <li class="nav-text"><a href="https://github.com/JilaveanuMihnea/BBFTCEvents"><i class="fa-brands fa-github nav-icon"></i> Github</a></li>
-          </div>
-        </ul>
-      </nav>
-    </header>
     
+    <?php include("navbar.php") ?>
+
     <?php
       if(isset($_SESSION['team_number']) && is_numeric($_SESSION['team_number'])){
         if($_SESSION['team_number']==$event_data[0]['team_number']){
-          echo  '<center><button id="delbtn"><i class="fa-solid fa-trash"></i> Sterge eveniment</button></center>
-                <center><a href="eventedit.php?id='. $event_data[0]['eventid'] .'"><button id="editbtn"><i class="fa-solid fa-gear"></i> Modifica eveniment</button></a></center>
+          echo  '<center><button id="delbtn"><i class="fa-solid fa-trash"></i> Şterge eveniment</button></center>
+                <center><a href="eventedit.php?id='. $event_data[0]['eventid'] .'"><button id="editbtn"><i class="fa-solid fa-gear"></i> Modifică eveniment</button></a></center>
                 <div class="delete-form">
                   <i class="fa-solid fa-xmark" id="closebtn"></i>
                   <form method="post" action="">
-                    <p>Confirma stergerea evenimentului</p>
+                    <p>Confirmă ştergerea evenimentului</p>
                     <input type="hidden" value="' .  $event_data[0]['eventid'] . ' " name="kill">
-                    <input type="submit" value="Sterge eveniment">
+                    <input type="submit" value="Şterge eveniment">
                   </form>
                 </div>';
         }
@@ -159,6 +129,7 @@
               ?>
             </p>
           </li>
+          
           <?php
             if($event_data[0]['event_format']=='fiz'){
               echo '<li>
@@ -167,7 +138,11 @@
                     </li>';
             }
           ?>
-          
+          <li>
+              <a href="<?php echo $event_data[0]['team_contact']?>" target="_blank">
+              Contact Echipa <i class="fa-solid fa-phone-flip "></i> 
+              </a>
+          </li>
         </ul>
       </div>
       <div class="description">

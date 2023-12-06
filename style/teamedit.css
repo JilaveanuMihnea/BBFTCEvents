@@ -1,0 +1,108 @@
+body {
+  background-color: rgb(236, 228, 228);
+  height: 100vh;
+  padding-bottom: 40px;
+}
+
+.main-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  align-items: center;
+  margin: 16px auto 0px;
+  width: 95vw;
+  max-width: 1100px;
+}
+
+.title-section {
+  width: 100%;
+  margin-bottom: 30px;
+  margin-top: 16px;
+  text-align: center;
+}
+
+.title-section h1 {
+  font-size: 36px;
+}
+
+.form-section {
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+}
+
+textarea {
+  width: 100%;
+  height: 150px;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  border-radius: 25px;
+  background-color: transparent;
+  color: black;
+  padding: 10px 20px;
+  transition: all 0.3s ease-out;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+textarea::-webkit-scrollbar {
+  display: none;
+}
+
+input.text {
+  width: 100%;
+  height: 50px;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  border-radius: 25px;
+  background-color: transparent;
+  color: black;
+  padding: 20px 0px 20px 20px;
+  transition: all 0.3s ease-out;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+.custom-upload {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  height: 50px;
+  border: 2px solid rgba(0, 0, 0, 0.5);
+  border-radius: 25px;
+  background-color: transparent;
+  color: black;
+  padding: 20px;
+  transition: all 0.3s ease-out;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+}
+
+input.img {
+  display: none;
+}
+
+input.text:hover,
+input.text:focus,
+.custom-upload:hover, textarea:hover, textarea:focus {
+  outline: none;
+  transform: scale(1.03);
+  border-color: rgba(0, 0, 0, 0.75);
+  background-color: rgb(243, 237, 237);
+}
+
+input.submit {
+  width: 100%;
+  height: 50px;
+  background-color: rgba(0, 0, 0, 1);
+  border: none;
+  border-radius: 25px;
+  color: rgb(236, 228, 228);
+  padding: 10px;
+  transition: all 0.3s ease-out;
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease-out;
+  margin-bottom: 40px;
+}
+
+input.submit:hover {
+  transform: scale(1.03);
+  background-color: rgba(0, 0, 0, 0.92);
+}

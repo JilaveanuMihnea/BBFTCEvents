@@ -1,7 +1,10 @@
 <?php
 session_start();
-include("../classes/allclasses.php");
-
+include("../classes/connect.php");
+include("../classes/login.php");
+include("../classes/image.php");
+include("../classes/events.php");
+include("../classes/team.php");
 
 $buttontext = "Conectează-te";
 $buttonicon = "fa-right-to-bracket";
@@ -26,7 +29,6 @@ if (isset($_SESSION["ftcevents_teamid"]) && is_numeric($_SESSION['ftcevents_team
   die;
 }
 
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
   //generate file name/eventid
@@ -37,6 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $new_rand = rand(0, 9);
     $filename .= $new_rand;
   }
+  $quicksave = $filename;
 
   //check data, add to db if valid
   $_POST['eventid'] = $filename;
@@ -48,6 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   $row = $result[0];
   $_POST['team_name'] = $row['team_name'];
   $_POST['team_number'] = $row['team_number'];
+  $_POST['team_contact'] = $row['team_contact'];
   $event = new Event();
   $result = $event->evaluate($_POST);
 
@@ -103,7 +107,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         fclose($handle);
       }
     }
-    header("Location: ../index.php");
+    header("Location: eventshowcase.php?id=" . $quicksave);
     die;
   }
 }
@@ -116,7 +120,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Add Event</title>
+  <title>Adaugă Eveniment</title>
+  <link rel="icon"  href="../resources/img/favicon.png">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -131,43 +136,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
-  <!-- navbar + sidemenu -->
-  <!-- navbar + sidemenu -->
-  <div id="obfuscate"></div>
-    <header id="navbar">
-      <a href="#" class="menu-bars" id="show-menu">
-        <i class="fa-solid fa-bars fa-lg"></i>
-      </a>
-      <div id="thing">
-        <a href="eventfilter.php" class="ev-search-link">Lista evenimente</a>
-        <?php
-        if($is_logged){
-          echo '<a href="team.php?nb=' . $_SESSION['team_number']. '" class="corner-img"><img src="../data/teamimgs/' . $_SESSION['team_number'] . '.png"></a>';
-        }
-        ?>
-      </div>
-      <!-- <input type="text" class="searchbar"> -->
-      <nav id="nav-menu">
-        <ul class="nav-menu-items">
-          <div id="navbar-toggle">
-            <div class="menu-bars" id="hide-menu">
-              <i class="fa-solid fa-bars fa-lg nav-icon"></i>
-            </div>
-            <a href="#"><img class="website-logo" /> Website Name </a>
-          </div>
-          <hr />
-          <div class="nav-section">
-            <!-- add buttons here -->
-            <li class="nav-text"><a href="<?php echo $addeventredirect?>"><i class="fa-solid fa-plus nav-icon"></i> Adauga Eveniment</a> </li>
-            <li class="nav-text"><a href="<?php echo $buttonredirect?>"><i class="fa-solid <?php echo $buttonicon ?> nav-icon"></i>
-                <?php echo $buttontext ?>
-              </a> </li>
-            <li class="nav-text"><a href="https://www.instagram.com/botsbrave/"><i class="fa-brands fa-instagram nav-icon"></i> Contact</a></li>
-            <li class="nav-text"><a href="https://github.com/JilaveanuMihnea/BBFTCEvents"><i class="fa-brands fa-github nav-icon"></i> Github</a></li>
-          </div>
-        </ul>
-      </nav>
-    </header>
+  
+  <?php include("navbar.php") ?>
 
   <div class="main-container">
     <div class="title-section">
@@ -202,18 +172,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
           <option value="">Alege tip</option>
         </select>
         <select name="event_jud" id="jud" required>
-          <option value="">Alege judet</option>
+          <option value="">Alege judeţ</option>
         </select>
       </div>
       <br />
       <br />
-      <center><p>Pentru ca evenimentul sa apara pe harta, alegeti o locatie predefinita</p></center>
+      <center><p>Pentru ca evenimentul să apară pe hartă, alegeţi o locaţie predefinită</p></center>
       <input
         class="text"
         name="event_location"
         type="text"
         id="e_location"
-        placeholder="Introdu o locatie"
+        placeholder="Introduceţi o locaţie"
       />
       
       <br />
@@ -229,7 +199,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
       <br />
       <br />
       <label for="e_img" class="custom-upload">
-        <span id="crazy">Incarca o imagine</span>
+        <span id="crazy">Incarcă o imagine</span>
       </label>
       <input
         class="img"
@@ -247,13 +217,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         type="text"
         id="e_desc"
         maxlength="900"
-        placeholder="Descriere"
+        placeholder="Descriere eveniment"
         required
       ></textarea>
       <br />
       <br />
       <center>
-        <input type="submit" id="button" value="Add event" class="submit" />
+        <input type="submit" id="button" value="Adaugă evenimentul" class="submit" />
       </center>
       <input name="event_lat" type="hidden" id="e_lat" />
       <input name="event_lng" type="hidden" id="e_lng" />
